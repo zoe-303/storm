@@ -1,0 +1,10 @@
+---
+# defaults file for immich 
+config_data_directory: "{{ docker_home }}/{{ service.name }}"
+
+service: 
+  name: immich 
+  enabled: true
+  image: "ghcr.io/imagegenius/immich:latest"
+
+

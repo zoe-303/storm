@@ -1,0 +1,73 @@
+---
+# tasks file for immich, using dockerfile and .env , as per immmich advice. 
+
+
+- debug:
+    msg: "{{ service.name }} is using {{ service.port }}"
+  when: service.port is defined
+
+- name: Start {{ service.name }} 
+  block:
+#   - name: Tear down existing services
+#     community.docker.docker_compose_v2:
+#       project_src: immich
+#       state: absent
+
+    - name: "Create {{ service.name }} directory"
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner:  "{{ system_account.name }}" 
+      with_items:
+        - "{{ config_data_directory }}"
+
+    - name: Template out docker .env file
+      ansible.builtin.template:
+        src: env.j2
+        dest:  "{{ config_data_directory }}/.env"
+        owner: "{{ system_account.name }}"
+        group: docker 
+        mode: "0644"
+  
+    - name: Copy docker-compose.yml into place, backing up the original if needed
+      ansible.builtin.copy:
+        src: docker-compose.yml
+        dest: "{{ config_data_directory }}/docker-compose.yml"
+        owner:  "{{ system_account.name }}"
+        group: docker 
+        mode: '0644'
+        backup: yes
+
+    - name: Create and start services
+      community.docker.docker_compose_v2:
+        project_src: "{{ config_data_directory }}/"
+      register: output
+
+    - name: Show results
+      ansible.builtin.debug:
+        var: output
+
+    - name: Run `docker compose up` again
+      community.docker.docker_compose_v2:
+        project_src: "{{ config_data_directory }}/"
+      register: output
+
+    - name: Show results (again)
+      ansible.builtin.debug:
+        var: output
+
+    - ansible.builtin.assert:
+        that: not output.changed
+
+  when: service.enabled is defined and service.enabled is true
+
+
+- name: "Stop {{ service.name }}"
+  block:
+    - name: Stop {{ service.name }}
+      community.docker.docker_container:
+        name: "{{ service.name }}"
+        state: absent
+  when: service.enabled is defined and service.enabled is false 
+
+...

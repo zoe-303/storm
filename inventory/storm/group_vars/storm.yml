@@ -1,0 +1,87 @@
+---
+# group vars for a server called storm
+# BASIC CONFIG:
+ansible_user: zoe 
+svrname: storm 
+timezone: America/Toronto # was Europe/London 
+
+extra_setup_packages:
+  #  - zfsutils-linux # zfs packages
+  - tree # I just like using tree...
+# 
+system_account:
+  name: storm_system 
+  state: present
+  system: yes
+  update_password: on_create
+  home: no
+  group: storm_system
+  shell: /usr/sbin/nologin
+
+# The root of your data, this will likely have to be seperated out into different locations depending on hardware available: 
+vault_root : "/home/{{ system_account.name }}/vault"
+
+#location for docker app data, would this be better on an SSD, rather than in the vault?
+docker_home: "{{ vault_root }}/docker"
+
+# immich DB location (to be tested - can't be NFS, but is ZFS on a HDD wise? Probs not
+immich_db: "{{ docker_home}}/immich/postgres"
+
+#location for arr stack downloads 
+downloads_root: "{{ vault_root }}/downloads"
+
+setup_shares: true # true will provision dir structure for shares ( /vault/tv , /vault/movies, etc), false will skip
+
+shares:
+# - audiobooks
+# - books
+# - code
+# - comics
+  - docker
+# - documents
+# - downloads
+# - dump
+# - games
+# - movies
+# - music
+  - photos
+# - podcasts
+# - tv
+
+apps:
+  # the setup, docker and homer roles are included by default
+  # possible options are:      
+  #   - gluetun - vpn 
+  #   - jellyfin - networked media player
+  #   - youtubedlmaterial - download youtube videos
+  #   - picard - modify metadata of batches of audio
+  #   - syncthing - sync files across the network. Can be used to keep your phone, audio player and music vault in sync.
+  #   - prowlarr- indexes torrent links from the internet
+  #   - radarr- scans for movies
+  #   - lidarr- scans for music
+  #   - readarr- scans for books
+  #   - bazarr- manages subtitles
+  #   - flaresolverr - enable prowlarr to work with cloudflare
+  #   - qbittorrent - bittorrent client for linux ISOs
+  #   - sonarr - scans for tv shows
+  #   - pihole - DNS, NTP and DCHP server, used for DNS blackholing ads networkwide.
+
+  - name: cloudflared
+    enabled: true
+    image: "cloudflare/cloudflared:latest"
+    docker_network_name: cloudflared-public # vpn/cloudflared-public/internal
+
+  - name: immich 
+    enabled: true
+    image: "ghcr.io/imagegenius/immich:latest"
+    docker_network_name: cloudflared-public # vpn/cloudflared-public/internal
+  
+  - name: syncthing
+    enabled: true
+    port: 8384
+    image: lscr.io/linuxserver/syncthing:latest
+    comment: "Cross platform folder sync service" 
+    # "WebUI port:8384 , Listening ports: 22000/tcp, 22000/udp, Protocol discovery:21027/udp "
+
+
+...

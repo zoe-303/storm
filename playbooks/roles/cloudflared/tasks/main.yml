@@ -1,0 +1,40 @@
+---
+# tasks file for cloudflared 
+
+- debug:
+    msg: "{{ service.name }} is using {{ service.port }}"
+  when: service.port is defined
+
+- name: Start {{ service.name }} 
+  block:
+    - name: "Create {{ service.name }} directory"
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner:  "{{ system_account.name }}" 
+      with_items:
+        - "{{ config_data_directory }}"
+
+    - name: "Create {{ service.name }} docker container"
+      community.docker.docker_container:
+        name: "{{ service.name }}" 
+        image: "{{ service.image }}"
+        pull: true
+        command: tunnel run
+        restart_policy: unless-stopped
+        memory: "{{ service.memory | default(omit) }}"
+        volumes:
+          - "{{ config_data_directory }}:/etc/cloudflared" 
+        env:
+          TUNNEL_TOKEN: "{{ tunnel_token }}"
+  when: service.enabled is defined and service.enabled is true
+
+- name: "Stop {{ service.name }}"
+  block:
+    - name: Stop {{ service.name }}
+      community.docker.docker_container:
+        name: "{{ service.name }}"
+        state: absent
+  when: service.enabled is defined and service.enabled is false 
+
+...

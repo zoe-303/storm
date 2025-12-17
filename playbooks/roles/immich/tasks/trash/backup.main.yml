@@ -1,0 +1,57 @@
+---
+# tasks file for cloudflared 
+
+
+- debug:
+    msg: "{{ service.name }} is using {{ service.port }}"
+  when: service.port is defined
+
+- name: Start {{ service.name }} 
+  block:
+#   - name: "Get {{ system_account.name }}'s UID and GID"
+#     getent:
+#       database: passwd
+#       key: "{{ system_account.name }}"
+
+    - name: "Create {{ service.name }} directory"
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner:  "{{ system_account.name }}" 
+      with_items:
+        - "{{ config_data_directory }}"
+
+#   - name: Create docker networks and attach the containers
+#     community.docker.docker_network:
+#       name: "{{ item.docker_network_name }} | default(internal)"
+#       connected: "{{ item.name }}"
+#     when: item.enabled is defined and item.enabled is true 
+#     loop: "{{ apps }}"
+
+    - name: "Create {{ service.name }} docker container"
+      community.docker.docker_container:
+        name: "{{ service.name }}" 
+        image: "{{ service.image }}"
+        pull: true
+        command: tunnel run
+#       networks:
+#         - name: "{{ service.docker_network_name | default(internal) }}"
+        restart_policy: unless-stopped
+        memory: "{{ service.memory | default(omit) }}"
+        volumes:
+          - "{{ config_data_directory }}:/etc/cloudflared" 
+        env:
+          TUNNEL_TOKEN: "{{ tunnel_token }}"
+
+  when: service.enabled is defined and service.enabled is true
+
+
+- name: "Stop {{ service.name }}"
+  block:
+    - name: Stop {{ service.name }}
+      community.docker.docker_container:
+        name: "{{ service.name }}"
+        state: absent
+  when: service.enabled is defined and service.enabled is false 
+
+...

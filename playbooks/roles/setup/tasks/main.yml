@@ -1,0 +1,111 @@
+---
+# tasks file for setup
+
+- name: Create required groups
+  ansible.builtin.group:
+    name: "{{ item.name }}"
+    state: present
+  loop: "{{ local_groups }}"
+
+
+- name: "Create required system account"
+  ansible.builtin.user:
+    name: "{{ system_account.name }}"
+    state: "{{ system_account.state }}"
+    system: "{{ system_account.system }}"
+    update_password: "{{ system_account.update_password }}"
+    create_home: "{{ system_account.home }}"
+    group: "{{ system_account.group }}"
+    shell: "{{ system_account.shell }}"
+#   password: "{{ system_account.pw }}"
+
+- name: "Create any other users"
+  ansible.builtin.user:
+    name: "{{ item.name | default(omit) }}" 
+    state: "{{ item.state | default(omit) }}" 
+    system: "{{ item.system  | default(omit) }}" 
+    update_password: "{{ item.update_password  | default(omit) }}" 
+    create_home: "{{ item.home  | default(false) }}" 
+    group: "{{ item.group  | default(omit) }}" 
+    shell: "{{ item.shell  | default(omit) }}" 
+    password: "{{ item.pw  | default(omit) }}" 
+  loop: "{{ users }}"
+  when: users is defined
+
+# name: Set login banner
+# ansible.builtin.copy:
+#   src: motd.txt
+#   dest: /etc/motd
+
+- name: Update apt-cache
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+  register: result
+  until: result is succeeded
+
+- name: Upgrade all packages
+  ansible.builtin.apt:
+    upgrade: yes
+    state: latest
+  when: keep_packages_updated
+
+- name: Install some packages
+  ansible.builtin.apt:
+    name: "{{ extra_setup_packages }}"
+    state: present
+  register: result
+  until: result is succeeded
+
+# name: check if zpool is already mounted
+# ansible.builtin.shell:
+#   cmd: zpool status
+# register: zpool_status
+
+# name: share zpool check status output
+# ansible.builtin.debug:
+#   msg: "NO POOLS CURRENTLY IN USE - will try to import {{ vault_root }}"
+# when: zpool_status.stderr_lines[0] is defined and zpool_status.stderr_lines[0] == "no pools available"
+
+# name: mount zpool 
+# ansible.builtin.shell:
+#   cmd: zpool import -f {{ vault_root }}
+# register: zpool_import
+# when: zpool_status.stderr_lines[0] is defined and zpool_status.stderr_lines[0] == "no pools available"
+  
+# name: check zpool is mounted
+# ansible.builtin.shell:
+#   cmd: zpool status
+# register: zpool_status
+
+# name: share zpool status output
+# ansible.builtin.debug:
+#   msg: "{{ zpool_status }}"
+
+- name: "Set hostname to {{ svrname }}"
+  ansible.builtin.hostname:
+    name: "{{ svrname }}"
+
+- name: "Set timezone to {{ timezone }}"
+  community.general.timezone:
+    name: "{{ timezone }}"
+
+- name: "Permission vault directory"
+  ansible.builtin.file:
+    path: "{{ vault_root }}/"
+    state: directory
+    owner:  "{{ system_account.name }}" #"{{ samba_owner }}" 
+    group:   "{{ system_account.group }}" #"{{ samba_owner }}"  samba
+    mode: "0744"
+    recurse: false
+
+- name: "Permission share directories"
+  ansible.builtin.file:
+    path: "{{ vault_root }}/{{ item }}"
+    state: directory
+    owner:  "{{ system_account.name }}" #"{{ samba_owner }}" 
+    group:   "{{ system_account.group }}" #"{{ samba_owner }}"  samba
+    mode: "0744"
+    recurse: false
+  loop: "{{ shares }}"
+  when: setup_shares is defined and setup_shares is true

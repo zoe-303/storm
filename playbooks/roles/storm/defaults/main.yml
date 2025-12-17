@@ -1,0 +1,42 @@
+---
+# defaults file for experimental
+  # NAMES MUST BE ACCURATE!
+services:
+  - name: homer1
+    port: 8080
+    enabled: true
+
+  - name: gluetun1
+    port: 8080 # CHECK WHAT QBITTORRENT USES AND CHANGE THIS OR THE HOMER PORT 
+    enabled: false #true
+
+  - name: jellyfin1
+    port: 8096
+    enabled: true
+
+# - name: youtubedlmaterial1
+#   port: 8998 # may need addressing in the tasks file
+#   enabled: true 
+
+# - name: prowlarr1
+#   port: 
+#   enabled: true
+
+# - name: 
+#   port: 
+#   enabled: true
+
+# - name: 
+#   port: 
+#   enabled: true
+
+# - name: 
+#   port: 
+#   enabled: true
+
+
+
+
+selection: "{{ services | selectattr('name', 'in', apps) }}"
+
+...

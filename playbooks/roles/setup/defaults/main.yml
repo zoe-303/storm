@@ -1,0 +1,20 @@
+---
+# defaults file for setup
+
+local_groups:
+  - name: docker
+  - name: dfb_system 
+
+extra_setup_packages:
+  
+system_account:
+  name: dfb_system 
+  state: present
+  system: yes
+  update_password: on_create
+  home: no
+  group: dfb_system 
+  shell: /usr/sbin/nologin
+
+keep_packages_updated : true
+

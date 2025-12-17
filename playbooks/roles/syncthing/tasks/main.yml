@@ -1,0 +1,49 @@
+---
+# tasks file for syncthing 
+
+- debug:
+    msg: "{{ service.name }} is using {{ service.port }}"
+
+- name: Start {{ service.name }} 
+  block:
+    - name: "Create {{ service.name }} directory"
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        owner:  "{{ system_account.name }}" 
+      with_items:
+        - "{{ config_data_directory }}"
+
+    - name: "Create {{ service.name }} docker container"
+      community.docker.docker_container:
+        name: "{{ service.name }}" 
+        image: "{{ service.image }}"
+        hostname: "{{ service.name }}" # syncthing #optional
+        pull: true
+        ports:
+          - "{{ service.port }}:8384"
+          - "22000:22000/tcp"
+          - "22000:22000/udp"
+          - "21027:21027/udp"
+        restart_policy: unless-stopped
+        memory: "{{ service.memory | default(omit) }}"
+        volumes:
+          - "{{ config_data_directory }}:/config"
+          - "{{ photo_root }}:/data1"
+          - "{{ music_root }}:/data2"
+        env: 
+          PUID: "{{ getent_passwd[system_account.name].1 }}" 
+          PGID: "{{ getent_passwd[system_account.name].2 }}"
+          TZ: "{{ timezone }}"
+
+  when: service.enabled is defined and service.enabled is true
+
+- name: "Stop {{ service.name }}"
+  block:
+    - name: Stop {{ service.name }}
+      community.docker.docker_container:
+        name: "{{ service.name }}"
+        state: absent
+  when: service.enabled is defined and service.enabled is false 
+
+...

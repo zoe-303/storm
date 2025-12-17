@@ -1,0 +1,17 @@
++A server called:--------------------------------------------------------------------------------------+
+|                                                                                                      |
+|                        ..                                                                            |
+|                       .ZZX                                                                           |
+|                       .ZZZ                                                                           |
+|    .XZZZZZZZXZZX   .ZZZZZZZZZZZZZX         .XZZZZZZZX.       .ZZZZZX .XZZZZZX XZZZZXZZZZX.XZZZZX.    |
+|   XZZZXXXXXXZZZX   .XXZZZZXXXXXXXX       .ZZZZXXXXXXZZZX     .XXZZZZZZZZXXXZZ..XZZZZXXXZZZZXXXZZZ    |
+|   ZZZZX.... ..X.      .ZZZ              .ZZZ.        XZZZ       .ZZZZX          ZZZ.   ZZZ.   ZZZ.   |
+|    .XZZZZZZZZZX.      .ZZZ              XZZ.          ZZZ.      .ZZZ            ZZZ.   ZZZ.   ZZZ.   |
+|  .XX.    ...XZZZ.     .ZZZ              XZZZ         XZZZ       .ZZZ            ZZZ.   ZZZ.   ZZZ.   |
+|  XZZZX.....XZZZZ.     .ZZZX.....XZZZ.    XZZZXX....XZZZX     XXXXZZZXXXXXX    .XZZZX.  ZZZX.  ZZZX.  |
+|  .ZZZZZZZZZZZXX        .XZZZZZZZZZX.       XXZZZZZZZZX.     .ZZZZZZZZZZZZZ.   XZZZZZZ  ZZZZX  ZZZZZ  |
+|         ..                  ..                  ..                                                   |
+|                                                                                                      |
+|                                                                                                      |
++--------------------------------------------------------------------------------------------by ZoeXeon!
+

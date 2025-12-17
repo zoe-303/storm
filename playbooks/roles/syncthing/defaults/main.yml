@@ -1,0 +1,14 @@
+---
+# defaults file for syncthing
+config_data_directory: "{{ docker_home }}/{{ service.name }}"
+
+music_root: "/{{ vault_root }}/music"
+photo_root: "/{{ vault_root }}/photos"
+
+service: 
+  name: syncthing
+  enabled: true
+  port: 8384
+  image: lscr.io/linuxserver/syncthing:latest
+  comment: "syncthing uses port 8384 for	its WebUI, 22000/tcp and udp for Listening ports and 21027/udp for Protocol discovery."
+

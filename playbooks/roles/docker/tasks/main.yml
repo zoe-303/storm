@@ -1,0 +1,5 @@
+---
+- name: choose appropriate role for OS (currently only supporting Debian + Ubuntu)
+  ansible.builtin.include_tasks: "{{ ansible_distribution | lower }}.yml"
+
+...

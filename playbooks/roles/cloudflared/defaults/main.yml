@@ -1,0 +1,11 @@
+---
+# defaults file for cloudflared 
+config_data_directory: "{{ docker_home }}/{{ service.name }}"
+
+service: 
+  name: cloudflared
+  enabled: true
+  image: cloudflare/cloudflared:latest
+
+tunnel_token: <add tunnel token from cloudflare> 
+

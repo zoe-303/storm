@@ -1,0 +1,6 @@
+---
+- hosts: all 
+  roles: 
+  - storm 
+  become: true
+...

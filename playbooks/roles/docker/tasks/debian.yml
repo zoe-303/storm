@@ -1,0 +1,47 @@
+---
+# If you use ufw or firewalld to manage firewall settings, be aware that when you expose container ports using Docker, these ports bypass your firewall rules. For more information, refer to [Docker and ufw.]( https://docs.docker.com/engine/network/packet-filtering-firewalls/#docker-and-ufw )
+    
+# Docker is only compatible with iptables-nft and iptables-legacy. Firewall rules created with nft are not supported on a system with Docker installed. Make sure that any firewall rulesets you use are created with iptables or ip6tables, and that you add them to the DOCKER-USER chain, see [Packet filtering and firewalls.]( https://docs.docker.com/engine/network/packet-filtering-firewalls/ )
+
+
+# needs Debian Trixie 13 (stable), Debian Bookworm 12 (oldstable) or Debian Bullseye 11 (oldoldstable)
+
+- name: Update and upgrade all packages to the latest version
+  ansible.builtin.apt:
+    update_cache: true
+    upgrade: dist
+    cache_valid_time: 3600
+
+- name: Install Docker and related packages
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  loop:
+    - docker-compose
+    - docker-cli
+    - docker.io
+    - ca-certificates
+    - curl
+    - python3-debian
+
+- name: Add Docker group if not already present
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: Add {{ docker_user }} to Docker group
+  ansible.builtin.user:
+    name: "{{ docker_user }}" 
+    groups: docker
+    append: true
+
+- name: Enable and start Docker services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  loop:
+    - docker.service
+    - containerd.service
+

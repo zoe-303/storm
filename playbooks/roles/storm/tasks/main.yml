@@ -1,0 +1,31 @@
+---
+# tasks file for experimenting
+
+- debug:
+    var: apps | to_yaml
+
+- name: "including setup roles" 
+  ansible.builtin.include_role: 
+    name: "{{ setup_role }}"
+  loop:
+    - setup
+    - docker
+  loop_control:
+    loop_var: setup_role
+
+- name: "including docker roles" 
+  ansible.builtin.include_role:
+    name: "{{ app.name }}"
+  vars:
+    service: "{{ app }}"
+  loop: "{{ apps }}" 
+  loop_control:
+    loop_var: app
+
+- name: "including homepage role" 
+  ansible.builtin.include_role:
+    name: "{{ homepage }}"
+  vars:
+    apps_list: "{{ apps }}"
+
+...
