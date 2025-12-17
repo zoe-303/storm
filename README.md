@@ -1,35 +1,22 @@
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-|                                                                                                                                                                                            |
-|                                                                                                                                                                                            |
-|                                                                                                                                                                                            |
-|                                                                                                                                                                                            |
-|                                                                                                                                                                                            |
-|                                                                                                                                                                                            |
-|                                             ....                                                                                                                                           |
-|                                           .ZZZZZ.                                                                                                                                          |
-|                                           .ZZZZZX                                                                                                                                          |
-|                                           .ZZZZZX                                                                                                                                          |
-|              ........     ..              XZZZZZX                                      ........                                      ......                  .....       ......            |
-|         .XZZZZZZZZZZZZZZXZZZZ.      .XZZZZZZZZZZZZZZZZZZZZZZZZX.                 ..XZZZZZZZZZZZZZXX.              XZZZZZZZZZZZ   .XXZZZZZZZZZX.  XZZZZZZZZXXZZZZZZZZX .XZZZZZZZZX.         |
-|       XZZZZZZZZZZZZZZZZZZZZZZX      XZZZZZZZZZZZZZZZZZZZZZZZZZZX               .ZZZZZZZZZZZZZZZZZZZZZX           .ZZZZZZZZZZZZ.XZZZZZZZZZZZZZZZX.ZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZZ.       |
-|     .ZZZZZZZZXXXXXXXXXZZZZZZZX       XXZZZZZZZZZZZZZZZZZZZZZZXX              XZZZZZZZZZXXXXXXXXZZZZZZZZX          .XZZZZZZZZZZZZZZZZZZXXXXZZZZZX XXZZZZZZZZZZXXXXZZZZZZZZXXXXXZZZZZZ       |
-|     .ZZZZZZX           .ZZZZZX            .ZZZZZX                           XZZZZZZZ.           .XZZZZZZX               ZZZZZZZZZZZX       .XX.     XZZZZZX.     ZZZZZZX.     ZZZZZZ.      |
-|     .ZZZZZZZXXX...       .XX.             .ZZZZZX                          .ZZZZZZ.               .XZZZZZX              ZZZZZZZZX.                  XZZZZZ.      ZZZZZZ.      ZZZZZZ.      |
-|      .ZZZZZZZZZZZZZZZZZXX..               .ZZZZZX                          ZZZZZZ.                  ZZZZZZ.             ZZZZZZ.                     XZZZZZ.      ZZZZZZ.      ZZZZZZ.      |
-|        .XZZZZZZZZZZZZZZZZZZZX             .ZZZZZX                          ZZZZZZ                   XZZZZZ.             ZZZZZZ                      XZZZZZ.      ZZZZZZ.      ZZZZZZ.      |
-|             ....XXXXZZZZZZZZZZ.           .ZZZZZX                          ZZZZZZ.                  ZZZZZZ.             ZZZZZZ                      XZZZZZ.      ZZZZZZ.      ZZZZZZ.      |
-|     XZZZX              .ZZZZZZZ           .ZZZZZX                          .ZZZZZZ.               .ZZZZZZX              ZZZZZZ                      XZZZZZ.      ZZZZZZ.      ZZZZZZ.      |
-|    XZZZZZZ..           .ZZZZZZZ           .ZZZZZZ           ..XZZZX.        XZZZZZZZX.         ..ZZZZZZZX              .ZZZZZZ.                     XZZZZZ.      ZZZZZZ.      ZZZZZZ.      |
-|    XZZZZZZZZZZXXXXXXZZZZZZZZZZ.            ZZZZZZZZXXXXXXZZZZZZZZZZZ         .XZZZZZZZZZXXXXXZZZZZZZZZZ.        .ZZZZZZZZZZZZZZZZZZZZZZZZX.      ZZZZZZZZZZZZ.   ZZZZZZZZZ.   ZZZZZZZZZ.   |
-|    .ZZZZZZZZZZZZZZZZZZZZZZZZX               XZZZZZZZZZZZZZZZZZZZZZX            .XZZZZZZZZZZZZZZZZZZZX.          XZZZZZZZZZZZZZZZZZZZZZZZZZ.     .ZZZZZZZZZZZZZ   ZZZZZZZZZX   ZZZZZZZZZX   |
-|     .XXX.XXZZZZZZZZZZZZZXX.                   .XZZZZZZZZZZZZZXX.                  .XXZZZZZZZZZZZXX.              .XXXXXXXXXXXXXXXXXXXXXXX.       .XXXXXXXXXXX    XXXXXXXX.    XXXXXXXX.    |
-|               .......                              ......                               ......                                                                                             |
-|                                                                                                                                                                                            |
-|                                                                                                                                                                                            |
-|                                                                                                                                                                                            |
-|                                                                                                                                                                                            |
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------by ZoeXeon!
-
++-------------------------------------------------------------------------------------------------------------+
+|                                                                                                             |
+|                                                                                                             |
+|                                                                                                             |
+|                                                                                                             |
+|                         XZZX                                                                                |
+|                         XZZX                                                                                |
+|      .XXXXXXX.XX.    ..XZZZZXXXXXX..           ..XXXXXX..         ..XXXX.  .XXXXX.  .XXX..XXXX. .XXXX.      |
+|    XZZZZZZZZZZZZZ   .ZZZZZZZZZZZZZZZ.        XZZZZZZZZZZZZX      .ZZZZZZZXZZZZZZZZX.ZZZZZZZZZZZZZZZZZZZX    |
+|   XZZZX     .XZZX       XZZZ               .ZZZZ..     .XZZZ.        ZZZZZZX.   .X.  XZZZX   ZZZZ.  XZZZ    |
+|   .ZZZZZZZXXX..         XZZX               ZZZX          XZZZ.       ZZZZ.           .ZZZ    ZZZX   XZZZ    |
+|     ..XXXZZZZZZZX       XZZX               ZZZX          .ZZZ.       ZZZX            .ZZZ    ZZZX   XZZZ    |
+|  .ZZX        XZZZX      XZZX        ..     XZZZX        .ZZZX        ZZZX            .ZZZ    ZZZX   XZZZ    |
+|  .ZZZZZXXXXXZZZZZ.      .ZZZXXXXXXZZZZZ     .ZZZZZXXXXXZZZZX     XZZZZZZZZZZZZX.   .XZZZZZX  ZZZZX. XZZZZX  |
+|   XXXXZZZZZZZXX.         .XXZZZZZZZXX.        .XXZZZZZZXX.       XXXXXXXXXXXXXX.   .XXXXXXX  XXXXX. .XXXXX  |
+|                                                                                                             |
+|                                                                                                             |
+|                                                                                                             |
++---------------------------------------------------------------------------------------------------by ZoeXeon!
 
 # storm
 Ansible roles for photo archiving with immich, remote access and tools
