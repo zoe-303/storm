@@ -1,23 +1,21 @@
 ```
-+-------------------------------------------------------------------------------------------------------------+\
-|                                                                                                             |\
-|                                                                                                             |\
-|                                                                                                             |\
-|                                                                                                             |\
-|                         XZZX                                                                                |\
-|                         XZZX                                                                                |\
-|      .XXXXXXX.XX.    ..XZZZZXXXXXX..           ..XXXXXX..         ..XXXX.  .XXXXX.  .XXX..XXXX. .XXXX.      |\
-|    XZZZZZZZZZZZZZ   .ZZZZZZZZZZZZZZZ.        XZZZZZZZZZZZZX      .ZZZZZZZXZZZZZZZZX.ZZZZZZZZZZZZZZZZZZZX    |\
-|   XZZZX     .XZZX       XZZZ               .ZZZZ..     .XZZZ.        ZZZZZZX.   .X.  XZZZX   ZZZZ.  XZZZ    |\
-|   .ZZZZZZZXXX..         XZZX               ZZZX          XZZZ.       ZZZZ.           .ZZZ    ZZZX   XZZZ    |\
-|     ..XXXZZZZZZZX       XZZX               ZZZX          .ZZZ.       ZZZX            .ZZZ    ZZZX   XZZZ    |\
-|  .ZZX        XZZZX      XZZX        ..     XZZZX        .ZZZX        ZZZX            .ZZZ    ZZZX   XZZZ    |\
-|  .ZZZZZXXXXXZZZZZ.      .ZZZXXXXXXZZZZZ     .ZZZZZXXXXXZZZZX     XZZZZZZZZZZZZX.   .XZZZZZX  ZZZZX. XZZZZX  |\
-|   XXXXZZZZZZZXX.         .XXZZZZZZZXX.        .XXZZZZZZXX.       XXXXXXXXXXXXXX.   .XXXXXXX  XXXXX. .XXXXX  |\
-|                                                                                                             |\
-|                                                                                                             |\
-|                                                                                                             |\
-+---------------------------------------------------------------------------------------------------by ZoeXeon!
++------------------------------------------------------------------------------------------------------+
+|                                                                                                      |
+|                                                                                                      |
+|                       .ZZX                                                                           |
+|                       .ZZZ                                                                           |
+|    .XZZZZZZZXZZX   .ZZZZZZZZZZZZZX         .XZZZZZZZX.       .ZZZZZX .XZZZZZX XZZZZXZZZZX.XZZZZX.    |
+|   XZZZXXXXXXZZZX   .XXZZZZXXXXXXXX       .ZZZZXXXXXXZZZX     .XXZZZZZZZZXXXZZ..XZZZZXXXZZZZXXXZZZ    |
+|   ZZZZX.... ..X.      .ZZZ              .ZZZ.        XZZZ       .ZZZZX          ZZZ.   ZZZ.   ZZZ.   |
+|    .XZZZZZZZZZX.      .ZZZ              XZZ.          ZZZ.      .ZZZ            ZZZ.   ZZZ.   ZZZ.   |
+|  .XX.    ...XZZZ.     .ZZZ              XZZZ         XZZZ       .ZZZ            ZZZ.   ZZZ.   ZZZ.   |
+|  XZZZX.....XZZZZ.     .ZZZX.....XZZZ.    XZZZXX....XZZZX     XXXXZZZXXXXXX    .XZZZX.  ZZZX.  ZZZX.  |
+|  .ZZZZZZZZZZZXX        .XZZZZZZZZZX.       XXZZZZZZZZX.     .ZZZZZZZZZZZZZ.   XZZZZZZ  ZZZZX  ZZZZZ  |
+|         ..                  ..                  ..                                                   |
+|                                                                                                      |
+|                                                                                                      |
++--------------------------------------------------------------------------------------------by ZoeXeon!
+
 ```
 # storm\
 Ansible roles for photo archiving with immich, remote access and tools
